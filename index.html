@@ -1,128 +1,360 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sketchfab → Cyberpunk 2077 Mod Guide</title>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
-    margin:0;
-}
-header {
-    background:#111827;
-    padding:30px;
-    text-align:center;
-}
-h1 { color:#22c55e; }
-section {
-    max-width:900px;
-    margin:auto;
-    padding:20px;
-}
-.card {
-    background:#1f2937;
-    padding:20px;
-    margin:20px 0;
-    border-radius:10px;
-}
-a.button {
-    display:inline-block;
-    padding:12px 20px;
-    background:#22c55e;
-    color:black;
-    text-decoration:none;
-    border-radius:8px;
-    font-weight:bold;
-}
-iframe {
-    width:100%;
-    height:400px;
-    border:none;
-    border-radius:8px;
-    margin-top:10px;
-}
-footer {
-    text-align:center;
-    padding:40px;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sketchfab to Cyberpunk 2077 (Wearable) | WolvenKit-Focused Guide</title>
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1621;
+      --text:#e8eef6;
+      --muted:#a9b4c2;
+      --accent:#00ffd0;
+      --accent2:#7c5cff;
+      --warn:#ffcc00;
+      --danger:#ff4d6d;
+      --ok:#2ee59d;
+      --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 400px at 20% 0%, rgba(124,92,255,.20), transparent 60%),
+                  radial-gradient(900px 400px at 80% 10%, rgba(0,255,208,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    .wrap{max-width:980px;margin:0 auto;padding:32px 18px 70px}
+    header{
+      padding:26px 22px;
+      border:1px solid var(--border);
+      background: linear-gradient(180deg, rgba(15,22,33,.9), rgba(15,22,33,.65));
+      border-radius:18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    h1{margin:0 0 8px;font-size:30px;letter-spacing:.2px}
+    .sub{color:var(--muted);margin:0}
+    .pillrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .pill{
+      border:1px solid var(--border);
+      padding:6px 10px;
+      border-radius:999px;
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      font-size:13px
+    }
+    .pill b{color:var(--text)}
+    nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:18px 0 0;
+    }
+    nav a{
+      color:var(--text);
+      text-decoration:none;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      padding:8px 12px;
+      border-radius:10px;
+      font-size:14px;
+    }
+    nav a:hover{border-color:rgba(0,255,208,.35)}
+    .kofi{
+      margin:22px 0 0;
+      padding:16px 16px;
+      border-radius:14px;
+      border:1px solid rgba(0,255,208,.35);
+      background: linear-gradient(90deg, rgba(0,255,208,.16), rgba(124,92,255,.12));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .kofi strong{font-size:16px}
+    .kofi a.btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:12px;
+      background: var(--accent);
+      color:#00120d;
+      font-weight:800;
+      text-decoration:none;
+      border:0;
+      box-shadow: 0 14px 30px rgba(0,255,208,.18);
+    }
+    .kofi small{color:var(--muted)}
+    section{
+      margin-top:22px;
+      padding:18px 18px;
+      border:1px solid var(--border);
+      border-radius:16px;
+      background: rgba(15,22,33,.72);
+    }
+    h2{margin:0 0 8px;font-size:22px}
+    h3{margin:16px 0 8px;font-size:16px;color:var(--accent)}
+    p{margin:10px 0}
+    ul{margin:10px 0 10px 22px}
+    li{margin:6px 0}
+    .note{
+      border-left:4px solid var(--accent2);
+      padding:10px 12px;
+      background: rgba(124,92,255,.10);
+      border-radius:10px;
+      color:var(--text);
+      margin:12px 0;
+    }
+    .warn{
+      border-left:4px solid var(--warn);
+      padding:10px 12px;
+      background: rgba(255,204,0,.10);
+      border-radius:10px;
+      margin:12px 0;
+    }
+    .danger{
+      border-left:4px solid var(--danger);
+      padding:10px 12px;
+      background: rgba(255,77,109,.10);
+      border-radius:10px;
+      margin:12px 0;
+    }
+    .ok{
+      border-left:4px solid var(--ok);
+      padding:10px 12px;
+      background: rgba(46,229,157,.10);
+      border-radius:10px;
+      margin:12px 0;
+    }
+    pre{
+      background: rgba(0,0,0,.55);
+      padding:12px 14px;
+      border-radius:12px;
+      overflow:auto;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media (min-width: 900px){
+      .grid{grid-template-columns: 1fr 1fr}
+    }
+    a{color:var(--accent)}
+    .tiny{font-size:13px;color:var(--muted)}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <header>
+      <h1>Sketchfab Model to Cyberpunk 2077 (Wearable Shoes)</h1>
+      <p class="sub">WolvenKit-focused workflow to finalize + export + install in-game (Blender section is brief).</p>
 
-<header>
-<h1>Sketchfab Model → Cyberpunk 2077 (Full Beginner Guide)</h1>
-<p>Step‑by‑Step Workflow using Blender + WolvenKit</p>
-</header>
+      <div class="pillrow">
+        <div class="pill"><b>Goal:</b> Wearable shoes in-game</div>
+        <div class="pill"><b>Tools:</b> Blender + WolvenKit</div>
+        <div class="pill"><b>Important:</b> WolvenKit imports <b>.GLB</b> over an existing <b>.mesh</b></div>
+      </div>
 
-<section>
+      <nav>
+        <a href="#requirements">Requirements</a>
+        <a href="#blender-brief">Blender (Brief)</a>
+        <a href="#wolvenkit-core">WolvenKit Core Steps</a>
+        <a href="#install-test">Install &amp; Test</a>
+        <a href="#troubleshoot">Troubleshooting</a>
+        <a href="#links">Verified Links</a>
+      </nav>
 
-<div class="card">
-<h2>⚙ Required Software</h2>
-<ul>
-<li>Blender</li>
-<li>WolvenKit</li>
-<li>Cyber Engine Tweaks</li>
-<li>Sketchfab Model (FBX / GLB)</li>
-</ul>
-</div>
+      <div class="kofi">
+        <div>
+          <strong>Support the creator ☕</strong><br/>
+          <small>If this guide helped you, consider supporting: <a href="https://ko-fi.com/justpad2310" target="_blank" rel="noopener">ko-fi.com/justpad2310</a></small>
+        </div>
+        <a class="btn" href="https://ko-fi.com/justpad2310" target="_blank" rel="noopener">Support on Ko‑fi</a>
+      </div>
+    </header>
 
-<div class="card">
-<h2>STEP 1 — Import Model into Blender</h2>
-<p>Delete default cube → File → Import → FBX or GLTF.</p>
-<iframe src="https://www.youtube.com/embed/7MRonzqYJgw"></iframe>
-</div>
+    <section id="requirements">
+      <h2>1) Requirements</h2>
+      <ul>
+        <li>Cyberpunk 2077 (PC)</li>
+        <li><b>WolvenKit</b> (latest recommended)</li>
+        <li><b>Blender</b></li>
+        <li>(Optional but common) <b>Cyber Engine Tweaks (CET)</b> for console spawning</li>
+      </ul>
+      <div class="note">
+        This guide focuses on the <b>WolvenKit finishing pipeline</b>: importing, building, and installing the mod.
+      </div>
+    </section>
 
-<div class="card">
-<h2>STEP 2 — Scale & Apply Transform</h2>
-<p>Press CTRL + A → Apply All Transforms.</p>
-<iframe src="https://www.youtube.com/embed/6HhY2p3h4lE"></iframe>
-</div>
+    <section id="blender-brief">
+      <h2>2) Blender Preparation (Brief)</h2>
+      <p>You already did most of this. The only key output WolvenKit expects is a <b>.GLB</b> export that matches the game mesh structure.</p>
+      <ul>
+        <li>Import Sketchfab shoe (FBX/GLB)</li>
+        <li>Align to the right foot, apply transforms (<code>Ctrl + A → Apply All</code>)</li>
+        <li>Weight the shoe fully to <code>RightFoot</code> (or the correct foot bone)</li>
+        <li><b>Export as GLB</b> (recommended for WolvenKit import)</li>
+      </ul>
+      <div class="warn">
+        If you exported FBX earlier: that’s fine for Blender work, but <b>WolvenKit’s mesh import expects .GLB</b> for import/export workflows.
+      </div>
+    </section>
 
-<div class="card">
-<h2>STEP 3 — Attach to Cyberpunk Body Rig</h2>
-<p>Parent mesh to armature and assign weight to foot bone.</p>
-<iframe src="https://www.youtube.com/embed/KR8R8xR7pJk"></iframe>
-</div>
+    <section id="wolvenkit-core">
+      <h2>3) WolvenKit Core Steps (Main Part)</h2>
 
-<div class="card">
-<h2>STEP 4 — Export FBX</h2>
-<ul>
-<li>Selected Objects ✓</li>
-<li>Apply Transform ✓</li>
-<li>Disable Add Leaf Bones</li>
-</ul>
-<iframe src="https://www.youtube.com/embed/1jHUY3qoBu8"></iframe>
-</div>
+      <div class="grid">
+        <div>
+          <h3>Step A — Create a Clean Mod Project</h3>
+          <ul>
+            <li>Open WolvenKit → <b>New Project</b></li>
+            <li>Name it (example: <code>HighHeelsWearable</code>)</li>
+            <li>Confirm the game path / version</li>
+          </ul>
 
-<div class="card">
-<h2>STEP 5 — Import into WolvenKit</h2>
-<p>Tools → Import Tool → Add FBX → Import Selected.</p>
-<iframe src="https://www.youtube.com/embed/tkk2nXh6P3k"></iframe>
-</div>
+          <h3>Step B — Pick a Base Shoe Mesh to Replace (Fastest Path)</h3>
+          <p class="tiny">The easiest first success is a <b>replacer</b> (replace an existing shoe in-game).</p>
+          <ul>
+            <li>In WolvenKit, browse the game files for an existing footwear mesh (<code>.mesh</code>)</li>
+            <li>Export that mesh to GLB so you have the correct structure/rig baseline</li>
+            <li>Use that exported GLB as the base you import your custom shoe onto</li>
+          </ul>
+          <div class="note">
+            This matches WolvenKit’s rule: you <b>import your .GLB into an existing .mesh</b>.
+          </div>
+        </div>
 
-<div class="card">
-<h2>STEP 6 — Convert to Wearable Item</h2>
-<p>Create garment item → assign Feet slot → build mod.</p>
-</div>
+        <div>
+          <h3>Step C — Import Your Custom GLB Over the Base .mesh</h3>
+          <ol>
+            <li>Open <b>Tools → Import/Export Tool</b></li>
+            <li>Set Target File Format to <b>Mesh</b></li>
+            <li>Select the <b>base shoe .mesh</b> you want to overwrite</li>
+            <li>Select your exported <b>custom .GLB</b></li>
+            <li>Run Import</li>
+          </ol>
 
-<div class="card" style="text-align:center;">
-<h2>❤️ Support the Creator</h2>
-<p>If this guide helped you, consider supporting development:</p>
-<a class="button" href="https://ko-fi.com/justpad2310" target="_blank">
-☕ Buy the Creator a Ko‑fi
-</a>
-</div>
+          <div class="ok">
+            Success looks like: WolvenKit completes import without fatal errors, and your project now contains the edited <code>.mesh</code> (and related files).
+          </div>
 
-</section>
+          <h3>Step D — Build the Mod</h3>
+          <ul>
+            <li>Click <b>Build</b> in WolvenKit</li>
+            <li>WolvenKit outputs archives for your mod</li>
+          </ul>
+        </div>
+      </div>
 
-<footer>
-<p>© JustPad Modding Guides</p>
-</footer>
+      <div class="warn">
+        Want a “new item” instead of replacer? That’s a longer pipeline (ArchiveXL/TweakXL). Use the “Adding new items” guide in the links section.
+      </div>
+    </section>
 
+    <section id="install-test">
+      <h2>4) Install &amp; Test In-Game</h2>
+
+      <h3>Where to put the mod</h3>
+      <p>Place the built archive(s) into:</p>
+      <pre><code>Cyberpunk 2077\archive\pc\mod</code></pre>
+
+      <h3>Testing</h3>
+      <ul>
+        <li>Launch the game</li>
+        <li>Equip the base shoe item you replaced (replacer workflow)</li>
+      </ul>
+
+      <h3>(Optional) Spawn / Debug via CET</h3>
+      <p>If you’re doing a “new item” workflow, CET is commonly used to spawn items via console.</p>
+      <div class="note">
+        See the verified CET install/debug videos in the links section.
+      </div>
+    </section>
+
+    <section id="troubleshoot">
+      <h2>5) Troubleshooting (Quick Fixes)</h2>
+
+      <h3>Import/Export Tool buttons are greyed out</h3>
+      <ul>
+        <li>Make sure you are inside a <b>mod project</b> (not just browsing game archives)</li>
+        <li>Try closing and reopening WolvenKit</li>
+        <li>Open the tool from the menu: <b>Tools → Import/Export Tool</b></li>
+      </ul>
+
+      <h3>“Bone Heat Weighting failed” in Blender</h3>
+      <ul>
+        <li>For shoes, prefer: <b>Empty Groups</b> + assign all vertices weight 1.0 to the correct foot bone</li>
+      </ul>
+
+      <h3>Foot clipping through the shoe</h3>
+      <ul>
+        <li>Don’t over-scale the shoe too much</li>
+        <li>Common fix: delete the foot faces that are fully inside the shoe (edit mode)</li>
+      </ul>
+
+      <h3>Import errors in WolvenKit</h3>
+      <div class="danger">
+        WolvenKit expects <b>.GLB</b> and you must import over an existing <b>.mesh</b>.
+        If you try to “convert FBX to mesh” directly, it usually won’t work in the standard pipeline.
+      </div>
+    </section>
+
+    <section id="links">
+      <h2>6) Verified Links (Only links confirmed reachable)</h2>
+      <p class="tiny">You asked for YouTube links only if they’re available. The two videos below were reachable when this page was built. Everything else is official documentation.</p>
+
+      <h3>Official / Trusted Documentation</h3>
+      <ul>
+        <li>
+          WolvenKit docs: Import/Export Mesh (GLB ↔ mesh workflow):
+          <a href="https://wiki.redmodding.org/wolvenkit/wolvenkit-app/usage/import-export/models" target="_blank" rel="noopener">
+            wiki.redmodding.org → Import/Export: Mesh
+          </a>
+        </li>
+        <li>
+          Cyberpunk Modding Guide: Adding new items (ArchiveXL/TweakXL pipeline):
+          <a href="https://wiki.redmodding.org/cyberpunk-2077-modding/modding-guides/items-equipment/adding-new-items" target="_blank" rel="noopener">
+            wiki.redmodding.org → Adding new items
+          </a>
+        </li>
+      </ul>
+
+      <h3>YouTube (Verified reachable at build time)</h3>
+      <ul>
+        <li>
+          Install Cyber Engine Tweaks (CET) + Simple Menu:
+          <a href="https://www.youtube.com/watch?v=waLXcoxCBIc" target="_blank" rel="noopener">
+            youtube.com/watch?v=waLXcoxCBIc
+          </a>
+        </li>
+        <li>
+          Enable Debug Console (CET) walkthrough:
+          <a href="https://www.youtube.com/watch?v=vCTzjOuWkdU" target="_blank" rel="noopener">
+            youtube.com/watch?v=vCTzjOuWkdU
+          </a>
+        </li>
+      </ul>
+
+      <div class="kofi">
+        <div>
+          <strong>Support the creator ☕</strong><br/>
+          <small>Want more guides like this? Support here: <a href="https://ko-fi.com/justpad2310" target="_blank" rel="noopener">ko-fi.com/justpad2310</a></small>
+        </div>
+        <a class="btn" href="https://ko-fi.com/justpad2310" target="_blank" rel="noopener">Support on Ko‑fi</a>
+      </div>
+
+      <footer>
+        Tip: Upload this file as <b>index.html</b> to a GitHub repo, then enable GitHub Pages.
+      </footer>
+    </section>
+  </div>
 </body>
 </html>
